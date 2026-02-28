@@ -1,9 +1,7 @@
 #!/bin/bash
-docker container run -d \
+docker container run -d --rm \
   --env-file $(pwd)/dev.env \
-  -p 8081:8081 \
-  --rm \
-  --name resource \
+  --name tokyomap-resource \
   --net network_tokyomap \
-  --ip 192.168.56.130 \
+  --ip 172.20.0.130 \
   tokyomap.resource:dev 
