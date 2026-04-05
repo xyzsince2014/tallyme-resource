@@ -4,6 +4,10 @@ import com.tokyomap.resource.application.ResourceService
 import com.tokyomap.resource.controller.resourceRoutes
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.server.application.*
+import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.routing.*
 import io.ktor.server.testing.*
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -22,6 +26,7 @@ class ResourceControllerTest {
   fun `GET userinfo with valid Bearer token returns 200 OK`() = testApplication {
     // FORCE the receiver by using this@application
     application {
+      this@application.install(ContentNegotiation) { json() }
       this@application.install(Koin) {
         modules(module {
           single { resourceServiceMock }
@@ -48,6 +53,7 @@ class ResourceControllerTest {
   @Test
   fun `GET userinfo with missing token returns 401 Unauthorized`() = testApplication {
     application {
+      this@application.install(ContentNegotiation) { json() }
       this@application.install(Koin) {
         modules(module { single { resourceServiceMock } })
       }

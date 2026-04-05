@@ -42,6 +42,11 @@ dependencies {
 
   // --- logging ---
   implementation("ch.qos.logback:logback-classic:1.5.6") // SLF4J implementation — required for any log output
+
+  // --- test ---
+  testImplementation("io.ktor:ktor-server-test-host:$ktorVersion") // Ktor embedded test engine (testApplication, client, etc.)
+  testImplementation("io.mockk:mockk:1.13.12") // MockK — coroutine-aware mocking library
+  testImplementation(kotlin("test")) // kotlin-test assertions + JUnit 5 integration
 }
 
 // the entry point when running the JAR
