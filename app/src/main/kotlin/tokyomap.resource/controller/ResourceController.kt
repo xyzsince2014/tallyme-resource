@@ -10,6 +10,7 @@ import io.ktor.server.plugins.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.json.buildJsonObject
 import org.koin.ktor.ext.inject
 
 /**
@@ -70,7 +71,7 @@ fun Route.resourceRoutes() {
         val validSubs = request.subs.filterNotNull()
 
         if (validSubs.isEmpty()) {
-          call.respond(HttpStatusCode.OK, emptyList<String>())
+          call.respond(HttpStatusCode.OK, buildJsonObject {})
           return@post
         }
 
