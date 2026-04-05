@@ -11,7 +11,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-PROFILE_ARG=""
+GRADLE_ARGS=()
 if [ $# -gt 1 ]; then
   echo "Usage: $0 [profile]"
   exit 1
@@ -20,26 +20,36 @@ fi
 if [ $# -eq 1 ]; then
   PROFILE="$1"
   echo "Building Ktor jar with profile: $PROFILE"
-  PROFILE_ARG="-P profile=$PROFILE"
+  GRADLE_ARGS+=("-Pprofile=$PROFILE")
 else
   echo "Building Ktor jar (no profile)..."
 fi
 
-# Run the Gradle wrapper to build the project (skip tests to speed up builds)
+# Run the Gradle wrapper to build the shadow (fat) JAR expected by the Docker build.
 if [ -x "./gradlew" ]; then
-  ./gradlew ${PROFILE_ARG} clean build -x test --no-daemon
+  ./gradlew "${GRADLE_ARGS[@]}" clean shadowJar -x test --no-daemon
 else
   # fallback to system gradle if wrapper not present (less recommended)
-  gradle ${PROFILE_ARG} clean build -x test
+  gradle "${GRADLE_ARGS[@]}" clean shadowJar -x test
 fi
 
-# Ensure a jar was produced
-JAR_PATH=$(ls build/libs/*.jar 2>/dev/null | head -n1 || true)
-if [ -z "$JAR_PATH" ]; then
-  echo "ERROR: no jar produced under build/libs"
+# Ensure the expected fat jar was produced deterministically.
+shopt -s nullglob
+jars=(build/libs/*-all.jar)
+shopt -u nullglob
+
+if [ "${#jars[@]}" -eq 0 ]; then
+  echo "ERROR: no fat jar produced under build/libs matching *-all.jar"
   exit 1
 fi
 
+if [ "${#jars[@]}" -ne 1 ]; then
+  echo "ERROR: multiple fat jars produced under build/libs matching *-all.jar"
+  printf ' - %s\n' "${jars[@]}"
+  exit 1
+fi
+
+JAR_PATH="${jars[0]}"
 echo "Built jar: $JAR_PATH"
 
 # Success
