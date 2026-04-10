@@ -38,20 +38,20 @@ data class PostgresConfig(
  */
 fun buildAppConfig(): AppConfig {
   // AS
-  val authContainer = requireNotNull(System.getenv("AUTH_CONTAINER")) {"Missing environment variable: AUTH_CONTAINER"}
+  val authContainer = requireNotNull(System.getenv("AS_DOMAIN")) {"Missing environment variable: AS_DOMAIN"}
 
   // RS
-  val resourceId = requireNotNull(System.getenv("RESOURCE_ID")) {"Missing environment variable: RESOURCE_ID"}
-  val resourceSecret = requireNotNull(System.getenv("RESOURCE_SECRET")) {"Missing environment variable: RESOURCE_SECRET"}
-  val resourceUrl = requireNotNull(System.getenv("RESOURCE_URL")) {"Missing environment variable: RESOURCE_URL"}
+  val resourceId = requireNotNull(System.getenv("RS_ID")) {"Missing environment variable: RS_ID"}
+  val resourceSecret = requireNotNull(System.getenv("RS_SECRET")) {"Missing environment variable: RS_SECRET"}
+  val resourceUrl = requireNotNull(System.getenv("RS_DOMAIN")) {"Missing environment variable: RS_DOMAIN"}
 
   // postgres
   val dbHost = requireNotNull(System.getenv("DB_HOST")) {"Missing environment variable: DB_HOST"}
+  val dbPort = requireNotNull(System.getenv("DB_PORT")) {"Missing environment variable: DB_PORT" }.toInt()
   val dbDatabase = requireNotNull(System.getenv("DB_DATABASE")) {"Missing environment variable: DB_DATABASE"}
+  val dbSchema = requireNotNull(System.getenv("DB_SCHEMA")) {"Missing environment variable: DB_SCHEMA"}
   val dbUser = requireNotNull(System.getenv("DB_USER")) {"Missing environment variable: DB_USER"}
   val dbPassword = requireNotNull(System.getenv("DB_PASSWORD")) {"Missing environment variable: DB_PASSWORD"}
-  val dbSchema = requireNotNull(System.getenv("DB_SCHEMA")) {"Missing environment variable: DB_SCHEMA"}
-  val dbPort = requireNotNull(System.getenv("DB_PORT")) {"Missing environment variable: DB_PORT" }.toInt()
 
   return AppConfig(
     auth = AuthConfig(
