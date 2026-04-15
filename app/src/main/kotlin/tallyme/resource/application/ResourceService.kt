@@ -1,11 +1,11 @@
-package com.tokyomap.resource.application
+package com.tallyme.resource.application
 
-import com.tokyomap.resource.domain.entity.User
-import com.tokyomap.resource.infrastructure.client.IntrospectionClient
-import com.tokyomap.resource.infrastructure.repository.UserRepository
-import com.tokyomap.resource.domain.exception.ForbiddenException
-import com.tokyomap.resource.domain.exception.NotFoundException
-import com.tokyomap.resource.domain.exception.UnauthorizedException
+import com.tallyme.resource.domain.entity.User
+import com.tallyme.resource.infrastructure.client.IntrospectionClient
+import com.tallyme.resource.infrastructure.repository.UserRepository
+import com.tallyme.resource.domain.exception.ForbiddenException
+import com.tallyme.resource.domain.exception.NotFoundException
+import com.tallyme.resource.domain.exception.UnauthorizedException
 import kotlinx.serialization.json.*
 
 /**

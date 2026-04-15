@@ -1,1 +1,1 @@
-rootProject.name = "tokyomap-resource"
+rootProject.name = "tallyme-resource"

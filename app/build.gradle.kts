@@ -7,7 +7,7 @@ plugins {
 }
 
 // pre-existing properties
-group = "tokyomap-resource"
+group = "tallyme-resource"
 version = "2.0.0"
 
 repositories {
@@ -51,7 +51,7 @@ dependencies {
 
 // the entry point when running the JAR
 application {
-  mainClass.set("com.tokyomap.resource.ApplicationKt")
+  mainClass.set("com.tallyme.resource.ApplicationKt")
 }
 
 java {

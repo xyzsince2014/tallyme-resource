@@ -1,9 +1,9 @@
-package com.tokyomap.resource.controller
+package com.tallyme.resource.controller
 
-import com.tokyomap.resource.application.ResourceService
-import com.tokyomap.resource.domain.exception.ForbiddenException
-import com.tokyomap.resource.domain.exception.NotFoundException
-import com.tokyomap.resource.domain.exception.UnauthorizedException
+import com.tallyme.resource.application.ResourceService
+import com.tallyme.resource.domain.exception.ForbiddenException
+import com.tallyme.resource.domain.exception.NotFoundException
+import com.tallyme.resource.domain.exception.UnauthorizedException
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.*

@@ -1,7 +1,7 @@
-package tokyomap.resource.controller
+package tallyme.resource.controller
 
-import com.tokyomap.resource.application.ResourceService
-import com.tokyomap.resource.controller.resourceRoutes
+import com.tallyme.resource.application.ResourceService
+import com.tallyme.resource.controller.resourceRoutes
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*

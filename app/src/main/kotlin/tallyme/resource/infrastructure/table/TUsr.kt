@@ -1,4 +1,4 @@
-package com.tokyomap.resource.infrastructure.table
+package com.tallyme.resource.infrastructure.table
 
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.javatime.datetime

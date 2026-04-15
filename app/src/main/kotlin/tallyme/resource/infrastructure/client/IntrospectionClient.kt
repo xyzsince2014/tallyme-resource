@@ -1,7 +1,7 @@
-package com.tokyomap.resource.infrastructure.client
+package com.tallyme.resource.infrastructure.client
 
-import com.tokyomap.resource.config.AppConfig
-import com.tokyomap.resource.domain.valueobject.IntrospectionResult
+import com.tallyme.resource.config.AppConfig
+import com.tallyme.resource.domain.valueobject.IntrospectionResult
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.request.forms.*

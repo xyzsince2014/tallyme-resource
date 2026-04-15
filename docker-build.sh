@@ -8,10 +8,10 @@ echo "⌛  Build & Deploy..."
 # Execute Docker build inside the Minikube environment
 eval $(minikube docker-env)
 
-docker image rm tokyomap-resource:dev 2>/dev/null || true
-docker build -t tokyomap-resource:dev app
+docker image rm tallyme-resource:dev 2>/dev/null || true
+docker build -t tallyme-resource:dev app
 
 # tell K8s to remake pods with the new docker image
-kubectl rollout restart deployment tokyomap-resource
+kubectl rollout restart deployment tallyme-resource
 
 echo "✅ Done."

@@ -1,4 +1,4 @@
-package com.tokyomap.resource.controller
+package com.tallyme.resource.controller
 
 import kotlinx.serialization.Serializable
 

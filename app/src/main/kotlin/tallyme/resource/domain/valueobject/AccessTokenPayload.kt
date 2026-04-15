@@ -1,4 +1,4 @@
-package com.tokyomap.resource.domain.valueobject
+package com.tallyme.resource.domain.valueobject
 
 /**
  * @deprecated No longer used. Claims are now sourced from [IntrospectionResult] (the introspection response)

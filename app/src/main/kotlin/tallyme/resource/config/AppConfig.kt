@@ -1,4 +1,4 @@
-package com.tokyomap.resource.config
+package com.tallyme.resource.config
 
 /**
  * Top-level application configuration.
@@ -37,13 +37,13 @@ data class PostgresConfig(
  * Reads environment variables and builds an [AppConfig].
  */
 fun buildAppConfig(): AppConfig {
-  // AS
-  val authContainer = requireNotNull(System.getenv("AS_DOMAIN")) {"Missing environment variable: AS_DOMAIN"}
+  // IdP
+  val idpContainer = requireNotNull(System.getenv("IDP_SERVICE")) {"Missing environment variable: IDP_SERVICE"}
 
-  // RS
-  val resourceId = requireNotNull(System.getenv("RS_ID")) {"Missing environment variable: RS_ID"}
-  val resourceSecret = requireNotNull(System.getenv("RS_SECRET")) {"Missing environment variable: RS_SECRET"}
-  val resourceUrl = requireNotNull(System.getenv("RS_DOMAIN")) {"Missing environment variable: RS_DOMAIN"}
+  // Resource
+  val resourceId = requireNotNull(System.getenv("RESOURCE_ID")) {"Missing environment variable: RESOURCE_ID"}
+  val resourceSecret = requireNotNull(System.getenv("RESOURCE_SECRET")) {"Missing environment variable: RESOURCE_SECRET"}
+  val resourceUrl = requireNotNull(System.getenv("RESOURCE_DOMAIN")) {"Missing environment variable: RESOURCE_DOMAIN"}
 
   // postgres
   val dbHost = requireNotNull(System.getenv("DB_HOST")) {"Missing environment variable: DB_HOST"}
@@ -55,8 +55,8 @@ fun buildAppConfig(): AppConfig {
 
   return AppConfig(
     auth = AuthConfig(
-      host = authContainer,
-      introspectionEndpoint = "$authContainer/api/v1/introspect",
+      host = idpContainer,
+      introspectionEndpoint = "$idpContainer/api/v1/introspect",
     ),
     protectedResource = ProtectedResourceConfig(
       resourceId = resourceId,

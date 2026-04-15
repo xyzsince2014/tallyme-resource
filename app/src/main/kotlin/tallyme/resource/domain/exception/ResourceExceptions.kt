@@ -1,4 +1,4 @@
-package com.tokyomap.resource.domain.exception
+package com.tallyme.resource.domain.exception
 
 /**
  * Domain exceptions for the OAuth2/OIDC resource server access control.

@@ -1,8 +1,8 @@
-package com.tokyomap.resource.infrastructure.repository
+package com.tallyme.resource.infrastructure.repository
 
-import com.tokyomap.resource.domain.entity.Address
-import com.tokyomap.resource.domain.entity.User
-import com.tokyomap.resource.infrastructure.table.TUsr
+import com.tallyme.resource.domain.entity.Address
+import com.tallyme.resource.domain.entity.User
+import com.tallyme.resource.infrastructure.table.TUsr
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json

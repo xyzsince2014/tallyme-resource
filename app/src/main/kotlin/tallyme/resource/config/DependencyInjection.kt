@@ -1,8 +1,8 @@
-package com.tokyomap.resource.config
+package com.tallyme.resource.config
 
-import com.tokyomap.resource.application.ResourceService
-import com.tokyomap.resource.infrastructure.client.IntrospectionClient
-import com.tokyomap.resource.infrastructure.repository.UserRepository
+import com.tallyme.resource.application.ResourceService
+import com.tallyme.resource.infrastructure.client.IntrospectionClient
+import com.tallyme.resource.infrastructure.repository.UserRepository
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.client.*

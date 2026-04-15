@@ -1,4 +1,4 @@
-package com.tokyomap.resource.domain.entity
+package com.tallyme.resource.domain.entity
 
 /**
  * Domain entity representing a registered user.

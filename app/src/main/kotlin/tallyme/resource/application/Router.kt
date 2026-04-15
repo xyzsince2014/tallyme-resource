@@ -1,6 +1,6 @@
-package com.tokyomap.resource.application
+package com.tallyme.resource.application
 
-import com.tokyomap.resource.controller.resourceRoutes
+import com.tallyme.resource.controller.resourceRoutes
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
 

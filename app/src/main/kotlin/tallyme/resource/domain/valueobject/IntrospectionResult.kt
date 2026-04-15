@@ -1,4 +1,4 @@
-package com.tokyomap.resource.domain.valueobject
+package com.tallyme.resource.domain.valueobject
 
 /**
  * Represents the response from the upstream auth server's token introspection endpoint.
