@@ -8,7 +8,7 @@ phases:
       nodejs: 16
   build:
     commands:
-      - docker build -t ${ECR_REPO}:${VERSION} --build-arg PORT="${PORT}" --build-arg DB_HOST="${DB_HOST}" --build-arg DB_DATABASE="${DB_DATABASE}" --build-arg DB_USER="${DB_USER}" --build-arg DB_PASSWORD="${DB_PASSWORD}" --build-arg DB_PORT="${DB_PORT}" --build-arg AUTH_CONTAINER="${AUTH_CONTAINER}" .
+      - docker build -t ${ECR_REPO}:${VERSION} --build-arg PORT="${PORT}" --build-arg DB_HOST="${DB_HOST}" --build-arg DB_DATABASE="${DB_DATABASE}" --build-arg DB_USER="${DB_USER}" --build-arg DB_PASSWORD="${DB_PASSWORD}" --build-arg DB_PORT="${DB_PORT}" --build-arg AS_DOMAIN="${AS_DOMAIN}" .
   post_build:
     commands:
       - aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_REPO}
