@@ -1,1 +1,14 @@
 /node_modules
+
+# idea
+.idea
+*.iml
+*.iws
+*.ipr
+
+# outputs
+app/.gradle/
+app/build/
+
+# vscode
+.vscode/
