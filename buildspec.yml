@@ -6,8 +6,9 @@ phases:
       java: corretto21
   pre_build:
     commands:
-      - cd app && chmod +x ./gradlew
-      - cd app && ./gradlew shadowJar
+      - cd app
+      - chmod +x ./gradlew
+      - ./gradlew shadowJar
   build:
     commands:
       - cd app
