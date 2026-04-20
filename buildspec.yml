@@ -6,10 +6,13 @@ phases:
       java: corretto21
   pre_build:
     commands:
-      - cd app && chmod +x ./gradlew && ./gradlew shadowJar
+      - cd $CODEBUILD_SRC_DIR/app
+      - chmod +x ./gradlew
+      - ./gradlew shadowJar
   build:
     commands:
-      - cd app && docker build -t ${ECR_REPO}:${VERSION} .
+      - cd $CODEBUILD_SRC_DIR/app
+      - docker build -t ${ECR_REPO}:${VERSION} .
   post_build:
     commands:
       - aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_REPO}
