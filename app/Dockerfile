@@ -1,4 +1,4 @@
-FROM amazoncorretto:21
+FROM public.ecr.aws/amazoncorretto/amazoncorretto:21
 
 LABEL maintainer="xyzsince2014 <xyzsince2014@gmail.com>"
 
