@@ -2,13 +2,16 @@ version: 0.2
 
 phases:
   install:
-    commands:
-      - yarn install
     runtime-versions:
-      nodejs: 16
+      java: corretto21
+  pre_build:
+    commands:
+      - cd app && chmod +x ./gradlew
+      - cd app && ./gradlew shadowJar
   build:
     commands:
-      - docker build -t ${ECR_REPO}:${VERSION} --build-arg PORT="${PORT}" --build-arg DB_HOST="${DB_HOST}" --build-arg DB_DATABASE="${DB_DATABASE}" --build-arg DB_USER="${DB_USER}" --build-arg DB_PASSWORD="${DB_PASSWORD}" --build-arg DB_PORT="${DB_PORT}" --build-arg AS_DOMAIN="${AS_DOMAIN}" app
+      - cd app
+      - docker build -t ${ECR_REPO}:${VERSION} .
   post_build:
     commands:
       - aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_REPO}
