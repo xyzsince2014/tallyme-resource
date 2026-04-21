@@ -1,0 +1,55 @@
+name: Build and Push to ECR
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ap-northeast-1
+  ECR_REPOSITORY: tallyme-resource
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::914087091933:role/tallyme-github-actions-role
+          aws-region: ${{ env.AWS_REGION }}
+
+      # set up Java 21 Corretto
+      - name: Set up JDK 21 (Corretto)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+
+      # 2. compile the Jar file with Gradle
+      - name: Build with Gradle (shadowJar)
+        working-directory: ./app
+        run: |
+          chmod +x ./gradlew
+          ./gradlew shadowJar
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      # build and push Docker image to ECR
+      - name: Build, Tag, and Push Docker image
+        working-directory: ./app
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
